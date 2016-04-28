@@ -1,0 +1,109 @@
+<include file="Common/header" />
+
+    <form method="post" action="" id="ctl01">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">提供帮助 <small>Provide List Match</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">提供帮助</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="portlet-body flip-scroll">
+                    <table class="table table-hover table-bordered flip-content  table-full-width" id="sample_2">
+                        <thead>
+                        <tr>
+                            <th class="sorting_desc">编号</th>
+                            <th class="sorting">提供会员</th>
+                            <th class="sorting">支付方式</th>
+                            <th class="sorting">提供金额</th>
+                            <th class="sorting">匹配状态</th>
+                            <th class="sorting">确认状态</th>
+                            <th class="sorting">提供昵称</th>
+                            <th class="sorting">提供时间</th>
+                            <th class="sorting">提供操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if(!empty($list)){
+                        foreach($list as $v){
+                        ?>
+                        <tr>
+                            <td>{$v.id}</td>
+                            <td>{$v.provide_name}</td>
+                            <td>银行,支付宝,微信</td>
+                            <td>{$v.money}</td>
+                            <td><?php echo $matchStatus[$v['match']];?></td>
+                            <td><?php echo $status[$v['status']];?></td>
+                            <td>{$v.provide_nc}</td>
+                            <td><?php echo date('Y-m-d H:i:s', $v['addtime']);?></td>
+                            <td>
+                                <?php if($v['match'] == 0){ ?>
+                                <a href='javascript:void(0);' onclick='manualMatch(this, {$v.id})'>手动匹配</a>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                        <?php }} ?>
+                        </tbody>
+                    </table>
+                    <div class="pagelist">{$page}</div>
+                    <div id="match" style="display: none;">
+                        <div class="panel-heading bk-bg-primary">
+                            <h6><i class="fa fa-table red"></i><span class="break"></span>接受帮助待分配列表</h6>
+                        </div>
+                        <table class="table table-bordered table-striped example cus_datatable dataTable no-footer" role="grid" aria-describedby="example_info" cellpadding="1" cellspacing="1">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting_desc">编号</th>
+                                <th class="sorting">提现会员</th>
+                                <th class="sorting">支付方式</th>
+                                <th class="sorting">提现金额</th>
+                                <th class="sorting">提现会员昵称</th>
+                                <th class="sorting">提现时间</th>
+                                <th class="sorting">提供操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="acceptList">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    function manualMatch(obj, id) {
+                        $(obj).closest('tr').prop("style", "color:red;");
+                        $.post('/match/getAccept/', {id:id}, function(data){
+                            if (data.ret)
+                            {
+                                $("#match").show();
+                                $("#acceptList").html(data.data);
+                            }
+                            else
+                            {
+                                alert(data.msg);
+                            }
+                        }, 'json');
+                    }
+                    function match(aid, pid) {
+                        $.post('/match/setMatch/', {aid:aid, pid:pid}, function(data){
+                            if (data.ret)
+                            {
+                                alert("配对成功");
+                                window.location.reload();
+                            }
+                            else
+                            {
+                                alert('配对失败');
+                            }
+                        }, 'json');
+                    }
+                </script>
+
+            </div>
+        </div>
+    </form>
+</div>
+<include file="Common/foot" />

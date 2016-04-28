@@ -1,0 +1,129 @@
+<include file="Common/header" />
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">在线留言 <small>Accept List Match</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">在线留言</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="portlet-body">
+                            <a data-toggle="modal" class="btn btn-primary red" role="button" href="/exchange/messageAdd/"><i class="icon-bullhorn"></i>我要发起留言</a>
+                            <div style="float: right">
+                                <span id="ContentPlaceHolder1_lblUser">用户名：</span>
+                                <input name="uname" type="text" id="uname" class="bk-bg-primary" />&nbsp;&nbsp;&nbsp;回复状态：
+                                <select name="status" id="status" class="bk-bg-primary">
+                                    <option value="0">未回复</option>
+                                    <option value="1">已回复</option>
+                                </select>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="submit" value="查询" id="btnSearch" class="bk-bg-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <br>
+                </div>
+                <!-- BEGIN list INFO-->
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="portlet box grey">
+                            <div class="portlet-title">
+                                <div class="caption"><i class="icon-list"></i>在线留言</div>
+                            </div>
+                            <div class="portlet-body  flip-scroll">
+                                <table class="table table-hover table-bordered flip-content  table-full-width" id="sample_2">
+                                    <thead>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>用户</th>
+                                        <th>留言内容</th>
+                                        <th>回复内容</th>
+                                        <th><i class="icon-hand-down"></i>发起时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php if(!empty($list)){
+                                    foreach($list as $v){
+                                    ?>
+                                    <tr>
+                                        <td>{$v.id}</td>
+                                        <td>{$v.uname}</td>
+                                        <td>{$v.content}</td>
+                                        <td class="reply" id="{$v.id}">{$v.reply}</td>
+                                        <td><?php echo date('Y-m-d H:i:s', $v['addtime']);?></td>
+                                        <td>
+                                            <a href="javascript:void(0);" class="btnReply">回复</a>&nbsp;
+                                            <a onclick="del({$v.id})" href="javascript:void(0);">删除</a></td>
+                                    </tr>
+                                    <?php }} ?>
+                                    </tbody>
+                                </table>
+                                <div class="pagelist">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script type="text/javascript">
+    $(function(){
+        $('.btnReply').click(function(){
+            var html = '<input type="text" class="content" title="回复内容">&nbsp;<a href="javascript:void(0);" onclick="msubmit(this)">确定</a>';
+            $(this).closest('tr').find('.reply').html(html);
+        })
+
+
+    });
+
+    function msubmit(obj)
+    {
+        var element = $(obj).closest('tr').find('.reply');
+        var content = $(element).find('.content').val();
+        var id = $(element).attr('id');
+        if (content == '')
+        {
+            alert('请回复内容');return false;
+        }
+        $.post('/exchange/messageReply/',{id:id, reply:content}, function(data){
+            if (data.ret)
+            {
+                alert('回复成功');
+                window.location.reload();
+            }
+            else
+            {
+                alert(data.msg);
+            }
+        }, 'json');
+    }
+
+    function del(id)
+    {
+        if (confirm('确定要删除吗？'))
+        {
+            $.post('/exchange/messageDel/id/' + id, function(data){
+                if (data.ret)
+                {
+                    alert('删除成功');
+                    window.location.reload();
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            }, 'json');
+        }
+    }
+</script>
+<include file="Common/foot" />

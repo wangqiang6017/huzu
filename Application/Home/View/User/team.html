@@ -1,0 +1,65 @@
+<include file="Common/header" />
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">我的团队 <small>My Team</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">我的团队</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="portlet-body flip-scroll">
+                    <form method="get">
+                    <div class="controls input-icon">
+                        <span id="ContentPlaceHolder1_Label1" class="control-label">用户名：</span>
+                        <input name="name" type="text" id="name" class="form-control" value="{$name}"/>
+                        <input type="submit" value="查询" id="btnSearch" class="btn blue" />
+                    </div>
+                    </form>
+                    <div>
+                        <table class="table table-hover table-bordered flip-content  table-full-width" cellspacing="0" id="ContentPlaceHolder1_GridView1" style="border-collapse:collapse;">
+                            <tr>
+                                <th scope="col">编号</th>
+                                <th scope="col">用户名</th>
+                                <th scope="col">昵称</th>
+                                <th scope="col">手机</th>
+                                <th scope="col">微信</th>
+                                <th scope="col">qq</th>
+                                <th scope="col">推荐人</th>
+                                <th scope="col">是否封号</th>
+                                <th scope="col">是否激活</th>
+                                <th scope="col">会员级别</th>
+                            </tr>
+                            <?php if(!empty($list)){
+                                    foreach($list as $v){
+                                    ?>
+                            <tr>
+                                <td>{$v.id}</td>
+                                <td>{$v.name}</td>
+                                <td>{$v.realname}</td>
+                                <td>{$v.phone}</td>
+                                <td>{$v.weixin}</td>
+                                <td>{$v.qq}</td>
+                                <td>{$v.pidname}</td>
+                                <td><?php if($v['invalid'] == 0){ echo '否'; }else{ echo '是';} ?></td>
+                                <td><?php if($v['active'] == 0){ echo '否'; }else{ echo '是';} ?></td>
+                                <td>{$v.level}</td>
+                        </tr>
+                            <?php }} ?>
+                   <tr>
+                            <td colspan="10"><table>
+                                <tr>
+                                    {$page}
+                                </tr>
+                            </table></td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <include file="Common/foot" />

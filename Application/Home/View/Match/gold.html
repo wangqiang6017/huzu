@@ -1,0 +1,44 @@
+<include file="Common/header" />
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">金币充值 <small>Accept List Match</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">金币充值</a> <i class="icon-angle-right"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <form method="post" id="loginForm">
+                <ul style="list-style: outside none none;">
+                    <li>用户：
+                        <input type="text" name="name" id="name" />
+                    </li>
+                    <li>数量：
+                        <input type="text" name="money" id="money" />
+                    </li>
+                    <li>
+                        <input type="button" onclick="doSubmit();" class="btn blue" value="生成" />
+                    </li>
+                </ul>
+                </form>
+            </div>
+        </div>
+<script type="text/javascript">
+    function doSubmit() {
+        $.post('/match/gold/',$("#loginForm").serialize(),function(data){
+            if(data.ret){
+                alert('操作成功');
+                window.location.reload();
+            }
+            else{
+                alert(data.msg);
+            }
+        }, 'json');
+        return false;;
+    }
+</script>
+        <include file="Common/foot" />

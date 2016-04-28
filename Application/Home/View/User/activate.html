@@ -1,0 +1,79 @@
+<include file="Common/header" />
+
+<form method="post" action="Active.aspx" id="ctl01">
+    <div class="aspNetHidden">
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEwOTI1OTYyNzVkZNOB7hubwMe+El18MYzbSpEYOBXXpEXCTnrwyZeOb0D5" />
+    </div>
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <h3 class="page-title">账户激活 <small>Change Password</small> </h3>
+                    <ul class="breadcrumb">
+                        <li><i class="icon-home"></i><a href="../Default.aspx">Home</a> <i class="icon-angle-right"></i></li>
+                        <li><a href="Active.aspx">账户激活</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label>填写激活码</label><br />
+                <input type="text" id="enterReg" />
+                <input type="button" class="btn btn-success" value="确认" onclick="register('丰')" />
+            </div>
+
+            <script type="text/javascript">
+                function register(userName) {
+                    if (check($("#enterReg")))
+                        $.ajax({
+                            type: "POST",
+                            url: "../Handler/Common.ashx", //取得a标签链接地址
+                            data: { "flag": "UserEnterRegCode", "RegCode": $("#enterReg").val(), "userName": userName },
+                            success: function (data) {
+                                if (data == "true") {
+                                    alert("激活成功，请重新登录！");
+                                    location.href = "/LogOff.aspx";
+                                } else {
+                                    alert("激活码错误，请重新填写！");
+                                    return false;
+                                }
+                            }
+                        })
+
+                }
+                // 表单验证
+                var check = function (input) {
+                    if (input.value === '') {
+                        inputError(input);
+                        input.focus();
+                        return false;
+                    } else {
+                        return true;
+                    }
+                };
+
+                // 输入错误提示
+                var inputError = function (input) {
+                    clearTimeout(inputError.timer);
+                    var num = 0;
+                    var fn = function () {
+                        inputError.timer = setTimeout(function () {
+                            input.className = input.className === '' ? 'input-error' : '';
+                            if (num === 5) {
+                                input.className === '';
+                            } else {
+                                fn(num++);
+                            }
+                        }, 150);
+                    };
+                    fn();
+                };
+            </script>
+
+        </div>
+    </div>
+</form>
+</div>
+
+<include file="Common/foot" />

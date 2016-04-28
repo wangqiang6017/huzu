@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>传承</title>
+    <link  href="__PUBLIC__/css/bootstrap.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/Font-Awesome-3.2.1/css/font-awesome.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/style-metro.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/style.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/style-responsive.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/grey.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/uniform.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/jquery.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/daterangepicker.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/fullcalendar.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/jquery_002.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/news.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/glyphicons.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/halflings.css" rel="stylesheet" />
+    <link  href="__PUBLIC__/css/Site.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-ui-1.8.16.min.js"></script>
+    <script src="__PUBLIC__/js/transition.js"></script>
+    <script src="__PUBLIC__/js/tooltip.js"></script>
+    <script src="__PUBLIC__/js/popover.js"></script>
+    <script src="__PUBLIC__/js/button.js"></script>
+    <script src="__PUBLIC__/js/carousel.js"></script>
+    <script src="__PUBLIC__/js/modal.js"></script>
+    <script src="__PUBLIC__/js/modernizr-2.6.2.js"></script>
+    <script src="__PUBLIC__/js/respond.js"></script>
+    <script src="__PUBLIC__/js/scrollspy.js"></script>
+    <script src="__PUBLIC__/js/tab.js"></script>
+    <script src="__PUBLIC__/js/app.js"></script>
+    <!--<link  href="__PUBLIC__/js/artDialog4.1.7/skins/default.css" rel="stylesheet" />-->
+    <!--<link  href="__PUBLIC__/js/artDialog/ui-dialog.css" rel="stylesheet" />-->
+    <script src="__PUBLIC__/js/artDialog4.1.7/artDialog.js?skin=default"></script>
+    <script src="__PUBLIC__/js/artDialog4.1.7/plugins/iframeTools.source.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.init(); // initlayout and core plugins
+    });
+</script>
+</head>
+<body class="page-header-fixed">
+<div class="header navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="Default.aspx">
+
+            </a>
+            <a href="javascript:void(0);" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                <img src="__PUBLIC__/images/menu-toggler.png" alt="" />
+            </a>
+
+            <ul class="nav pull-right">
+                <li class="dropdown user" style="margin-top: 4px;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i><span class="username">{$Think.session.userInfo.name}</span> <i class="icon-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/user/update/"><i class="icon-pencil"></i>修改资料</a></li>
+
+                        <li class="divider"></li>
+                        <li><a  href="/user/logout/"><i class="icon-remove"></i>安全退出</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <script>
+                $(function(){
+                    $(".dropdown-toggle").dropdown();
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+<div class="page-container">
+
+    <include file="Common/sider" />

@@ -1,0 +1,48 @@
+<include file="Common/header" />
+    <form method="" id="ctl01">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">生成排单币 <small>Accept List Match</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="/match/coinList/">排单币管理</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">生成排单币</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <ul style="list-style: outside none none;">
+                    <li>用户：
+                        <input type="text" name="uname" id="uname" />
+                    </li>
+                    <li>数量：
+                        <input type="text" name="count" id="count" />
+                    </li>
+                    <li>
+                        <input type="button" class="btn blue msubmit" value="生成" />
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.msubmit').click(function(){
+            $.post('/match/coinAdd/', $('#ctl01').serialize(), function(data){
+                if(data.ret)
+                {
+                    alert('生成成功');
+                    window.location.href = '/match/coinList/';
+                }
+                else {
+                    alert(data.msg);
+                }
+            }, 'json')
+        })
+    })
+</script>
+<include file="Common/foot" />

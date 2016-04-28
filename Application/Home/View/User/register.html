@@ -1,0 +1,121 @@
+<include file="Common/header" />
+    <!-- END SIDEBAR -->
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">新建账户 <small>Change Password</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="../Default.aspx">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="Registered.aspx">新建账户</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tabbable tabbable-custom tabbable-full-width">
+                    <div class="tab-content">
+                        <div class="tab-pane row-fluid active" id="tab_1_1">
+                            <div class="span9">
+                                <div class="portlet box ">
+                                    <div class="portlet-body form-horizontal">
+                                        <form action="" id="loginForm" method="post">
+                                            <div class="control-group">
+                                                <label class="control-label" for="">用户名</label>
+                                                <div class="controls input-icon">
+                                                    <input id="name" class="form-control" name="name" required="" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">确认用户名</label>
+                                                <div class="controls input-icon">
+                                                    <input id="UserName_repeat" class="form-control" name="UserName_repeat" required="" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">登入密码</label>
+                                                <div class="controls input-icon">
+                                                    <input id="password" class="form-control" name="password" min="6" required="" type="password" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">确认登入密码</label>
+                                                <div class="controls input-icon">
+                                                    <input id="PassWord2" class="form-control" name="PassWord2" required="" type="password" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">二级密码</label>
+                                                <div class="controls input-icon">
+                                                    <input name="pay_pass" class="form-control" id="pay_pass" min="6" required="" type="password" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">确认二级密码</label>
+                                                <div class="controls input-icon">
+                                                    <input name="PaymentPassWord2" class="form-control" id="PaymentPassWord2" required="" type="password" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">姓名</label>
+                                                <div class="controls input-icon">
+                                                    <input id="realName" class="form-control" name="realName" maxlength="60" required="" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">手机号码</label>
+                                                <div class="controls input-icon">
+                                                    <input id="phone" class="form-control" name="phone" maxlength="13" required="" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label">短信验证码<span class="required">*</span></label>
+                                                <div class="controls input-icon">
+                                                    <input id="SMSCode" name="SMSCode" placeholder="短信验证码" class="span3 m-wrap" required="" type="text"/>
+                                                    <input type="button" id="getSMS" value="获取短信验证码" class="btn red" onclick="return GetSMSCode_Click();" />
+                                                    <span class="help-inline"></span>
+                                                </div>
+                                                <div class="help-hint">
+                                                    <span id="lblSMS"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="">推荐人账户</label>
+                                                <div class="controls input-icon">
+                                                    <input id="pidName" class="form-control" name="pidName" readonly="true" value="admin" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="alert alert-error">
+                                                <input name="ty" id="ty" value="ye" checked="checked" type="checkbox" />我已完全了解所有风险。。
+                                            </div>
+                                            <div class="control-group">
+                                                <div class="controls input-icon">
+                                                    <button class="btn btn-success" onclick="return doSubmit();">注册</button>
+                                                    <input name="重置" class="btn btn-default" value="取消" type="reset" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    function doSubmit() {
+                        $.post('/user/register',$("#loginForm").serialize(),function(data){
+                            if(data.ret){
+                                window.location.reload();
+                            }
+                            else{
+                                alert(data.msg);
+                            }
+                        }, 'json');
+                        return false;;
+                    }
+                </script>
+
+            </div>
+        </div>
+</div>
+<include file="Common/foot" />

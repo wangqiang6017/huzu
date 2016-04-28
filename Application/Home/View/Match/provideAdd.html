@@ -1,0 +1,80 @@
+<include file="Common/header" />
+    <form action="" id="subForm">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">提供帮助 <small>Change Password</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">提供帮助</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tabbable tabbable-custom tabbable-full-width">
+                    <div class="tab-content">
+                        <div class="tab-pane row-fluid active" id="tab_1_1">
+                            <div class="alert alert-error"><strong>系统提示：</strong> 申请完成后，请等待系统分配受善需求。</div>
+                            <div class="span9">
+                                <div class="portlet box ">
+                                    <div class="portlet-body form-horizontal">
+                                        <div class="control-group">
+                                            <label class="control-label">支付方式<span class="required">&nbsp;</span></label>
+                                            <div class="controls input-icon">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="1" name="payment[]" checked> 银行支付
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="2" name="payment[]" checked> 支付宝支付
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="3" name="payment[]" checked> 微信支付
+                                            </label>
+                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="userNickName">提供援助金额<span class="required">*</span></label>
+                                            <div class="controls input-icon">
+                                                <input type="text" class="offer" placeholder="输入1000-50000" name="money" id="money" required="" onkeyup="this.value=this.value.replace(/[^1-9\d]/g,'') " />RMB
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="">消耗排单币<span class="required">&nbsp;</span></label>
+                                            <div class="controls input-icon">
+                                                <input type="text" class="offer" value="1" name="coin" id="coin" autocomplete="off" required="" readonly="" />个
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-error">警告，我已完全了解所有风险。我决定参与并尊重传承文化与传统。</div>
+                                        <div class="form-actions">
+                                            <button type="button" class="btn blue" id="formsubbtn">确认提交(Submit)</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('#formsubbtn').click(function(){
+            $.post('/match/provideAdd/',$("#subForm").serialize(),function(data){
+                if(data.ret){
+                    alert('恭喜您申请成功');
+                    window.location.href='/index/index';
+                }
+                else{
+                    alert(data.msg);
+                }
+            }, 'json');
+            return false;
+        });
+    })
+</script>
+<include file="Common/foot" />

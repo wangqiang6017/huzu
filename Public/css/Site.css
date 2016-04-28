@@ -1,0 +1,155 @@
+.big-btn-box .big-btn-box-a {
+    width: 32%;
+    float: left;
+    margin-right: 2%;
+}
+
+.big-btn-box .big-btn-box-b {
+    width: 32%;
+    float: right;
+}
+
+.big-btn-box .big-btn-box-c {
+    width: 32%;
+    float: left;
+}
+
+.tongdao1 {
+    position: relative;
+    background: #4E8DF5;
+    padding: 10px;
+    border: 1px solid #417DE0;
+}
+
+@media (max-width:736px) {
+    .big-btn-box .big-btn-box-a {
+        width: 100%;
+    }
+
+    .big-btn-box .big-btn-box-b {
+        width: 100%;
+    }
+
+    .big-btn-box .big-btn-box-c {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+.portlet {
+    clear: none;
+}
+
+.portlet_a {
+    width: 49%;
+    float: left;
+}
+
+.portlet_b {
+    width: 49%;
+    float: right;
+}
+
+.flip-content .tit {
+    font-weight: bold;
+    text-align: center;
+}
+
+.list-notice {
+    padding: 1px 5px;
+}
+
+.table-condensed th, .table-condensed td {
+    padding: 6px 5px 5px;
+}
+
+.tg-link {
+    line-height: 30px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
+.peidui_btn_div {
+    padding: 0px 20px;
+}
+
+@media (max-width: 767px) {
+    .portlet_a {
+        width: 100%;
+        float: none;
+        clear: both;
+    }
+
+    .portlet_b {
+        width: 100%;
+        float: none;
+    }
+}
+
+@media (max-width: 778px) {
+    .donations-forward {
+        display: none;
+    }
+
+    .donations-date {
+        width: 35%;
+        height: 40px;
+    }
+
+    .donations-status {
+        width: 20%;
+        height: 40px;
+    }
+
+    .donations-number {
+        width: 45%;
+        height: 40px;
+        font-size: 12px;
+    }
+
+        .donations-number span {
+            font-size: 12px;
+        }
+
+    .donations-num {
+        font-size: 12px;
+        width: 30%;
+        text-align: center;
+    }
+
+        .donations-num span {
+            font-size: 14px;
+        }
+
+            .donations-num span.rmbflag {
+                display: none;
+            }
+
+    .donations-pay {
+        display: none;
+        width: 21%;
+        font-size: 12px;
+    }
+
+    .donations-get {
+        width: 30%;
+        font-size: 12px;
+    }
+
+    .donations-detail {
+        width: 40%;
+    }
+
+    .portlet.box .pd-wrap {
+        padding: 5px;
+    }
+
+    .transaction-details {
+        padding: 5px;
+    }
+
+        .transaction-details table td {
+            padding: 3px 3px;
+        }
+}

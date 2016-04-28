@@ -1,0 +1,108 @@
+<include file="Common/header" />
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">接受帮助 <small>Change Password</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">接受帮助</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-warning">申请完成后，请等待系统分配受善需求</p>
+                <form id="subForm">
+                <div class="modal-body">
+                    <table>
+                        <!--tr>
+                            <td><span>可出售余额</span></td>
+                            <td>
+                                <input type="text" placeholder="" id="MoneyCan" name="MoneyCan" class="form-control" value="0RMB" readonly="" /></td>
+                        </tr-->
+                        <tr>
+                            <td><span>最低出售数量</span></td>
+                            <td>
+                                <input type="text" class="form-control" id="CountLeast" value="1000RMB" readonly="" /></td>
+                        </tr>
+                        <tr>
+                            <td><span>接受援助方式</span></td>
+                            <td>
+                                <div class="controls input-icon">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="1" name="payment[]" checked> 银行支付
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="2" name="payment[]" checked> 支付宝支付
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="3" name="payment[]" checked> 微信支付
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>接受援助类型</span></td>
+                            <td><select class="form-control" name="type">
+                                <option value="1">静态余额</option>
+                                <option value="2">动态余额</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td><span>接受援助金额</span></td>
+                            <td>
+                                <input type="hidden" id="Multiple" value="100" />
+                                <input type="text" class="form-control get_amount" placeholder="输入RMB1000起,100的倍数" id="money" name="money" autocomplete="off" required="" onkeyup="this.value=this.value.replace(/[^1-9\d]/g,'') " />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="form-group">
+                        <h4>警告，我已完全了解所有风险。我决定参与并尊重传承文化与传统。</h4>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn blue" id="joinformsubbtn">确认提交(Submit)</button>
+                    </div>
+                </div>
+                </form>
+                <script type="text/javascript">
+                    $(function(){
+                        $('#joinformsubbtn').click(function(){
+                            chgcode();
+                            $.post('/match/acceptAdd/',$("#subForm").serialize(),function(data){
+                                if(data.ret){
+                                    alert('恭喜您申请成功');
+                                    window.location.href='/index/index';
+                                }
+                                else{
+                                    alert(data.msg);
+                                }
+                            }, 'json');
+                            return false;
+                        });
+                    })
+
+                    function chgcode() {
+                        //验证是否是最少提供金额的整数倍
+                        var vamount = parseInt($("#money").val());
+                        var vMultiple = parseInt($("#Multiple").val());
+                        if (vamount > 50000 || vamount < 1000 || !zhengchu(vamount, vMultiple)) {
+                            alert("金额不对，请填写" + vMultiple + "的整数倍,且小于50000");
+                            $("#money").val(0);
+                            $("#money").focus();
+                            return false;
+                        }
+                    }
+                    function zhengchu(x, y) {
+                        var z = parseInt(x / y);
+                        if (z * y == x) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+</div>
+<include file="Common/foot" />

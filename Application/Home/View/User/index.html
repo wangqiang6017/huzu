@@ -1,0 +1,106 @@
+<include file="Common/header" />
+
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">用户列表 <small>Change Password</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">用户列表</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="portlet-body flip-scroll">
+                    <div class="controls input-icon">
+                        <form method="get" action="" id="ctl01">
+                            <span id="ContentPlaceHolder1_Label1" class="control-label">用户名：</span>
+                            <input name="name" type="text" id="userName" class="form-control" />
+                            <input type="submit" value="查询" id="btnSearch" class="btn blue" />
+                        </form>
+                    </div>
+                    <div>
+                        <table class="table table-hover table-bordered flip-content  table-full-width" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_GridView1" style="border-collapse:collapse;">
+                            <tr>
+                                <th scope="col"><a href="javascript:void(0);">编号</a></th>
+                                <th scope="col"><a href="">用户名</a></th>
+                                <th scope="col"><a href="">密码</a></th>
+                                <th scope="col"><a href="">支付密码</a></th>
+                                <th scope="col"><a href="">真实姓名</a></th>
+                                <th scope="col"><a href="">手机号</a></th>
+                                <th scope="col"><a href="">微信号</a></th>
+                                <th scope="col"><a href="">QQ</a></th>
+                                <th scope="col"><a href="">推荐人</a></th>
+                                <th scope="col"><a href="">级别</a></th>
+                                <th scope="col"><a href="">注册时间</a></th>
+                                <th scope="col"><a href="">封号</a></th>
+                                <th scope="col"><a href="">激活</a></th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            <?php if(empty($list)){ ?>
+                            <tr>
+                                <td colspan="14">暂无此用户！</td>
+                            </tr>
+                            <?php }else{ foreach($list as $v){ ?>
+                            <tr>
+                                <td>{$v.id}</td>
+                                <td>{$v.name}</td>
+                                <td>{$v.password}</td>
+                                <td>{$v.pay_pass}</td>
+                                <td>{$v.realname}</td>
+                                <td>{$v.phone}</td>
+                                <td>{$v.weixin}</td>
+                                <td>{$v.qq}</td>
+                                <td>{$v.pidname}</td>
+                                <td>{$v.path}</td>
+                                <td>{$v.regtime}</td>
+                                <td>
+                                    <span class="aspNetDisabled"><input type="checkbox" class="invalid" <?php if($v['invalid'] == 1){ echo 'checked="checked" ';} ?> value="1" /></span>
+                                </td>
+                                <td>
+                                    <span class="aspNetDisabled"><input type="checkbox" class="active" <?php if($v['active'] == 1){ echo 'checked="checked" ';} ?> value="1" /></span>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="updateStatus" id="{$v.id}">修改</a>
+                                </td>
+                        </tr>
+                            <?php }} ?>
+                        </table>
+                        <div class="pagelist">{$page}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.updateStatus').click(function(){
+            var id = $(this).attr('id');
+            var invalid = $(this).closest('tr').find('.invalid').is(':checked') == false ? 0 : 1;
+            var active = $(this).closest('tr').find('.active').is(':checked') == false ? 0 : 1;
+            if (invalid == 0 && active == 0)
+            {
+                return false;
+            }
+            var d = dialog( {
+                title: '提示',
+                content: '确定要修改吗',
+                width: '60%',
+                okValue: '确定',
+                ok: function () {
+                    this.title('修改中…');
+                    $.post('/user/update/', {uid:id, invalid:invalid, active:active}, function(data){
+                        window.location.reload();
+                    })
+                    return false;
+                },
+                cancelValue: '取消'
+            });
+            d.show();
+        });
+    })
+</script>
+<include file="Common/foot" />

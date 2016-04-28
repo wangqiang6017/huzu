@@ -1,0 +1,142 @@
+<include file="Common/header" />
+    <form method="post" action="" id="ctl01">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">分成管理 <small>Change Password</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">分成管理</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tabbable tabbable-custom tabbable-full-width">
+                    <div class="tab-content">
+                        <div class="tab-pane row-fluid active" id="tab_1_1">
+                            <div class="alert alert-error"><strong>系统提示：</strong> 申请完成后，请等待系统分配受善需求。</div>
+                            <div class="span9">
+                                <div class="portlet box ">
+                                    <form action="" id="SettingsForm" method="post">
+                                        <div class="portlet-body form-horizontal">
+                                            <div class="control-group">
+                                                <label class="control-label" for="">仅需互助<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control" name="min" id="min" value="{$info.min}" required="" type="text" />
+                                                    <span>元~</span>
+                                                    <input class="form-control" name="max" id="max" value="{$info.max}" required="" type="text" />
+                                                    <span>元&nbsp;&nbsp;且必须</span>
+                                                    <span>100元的整倍数</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group" style="display:none" >
+                                                <label class="control-label" for="">新用户注册奖励<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="regReward" id="regReward" value="{$info.regReward}" required="" type="number" />
+                                                    <span>元</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">推荐奖<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="recommendAward" id="recommendAward" value="{$info.recommendAward}" required="" type="text" />
+                                                    <span>% 用,号分隔</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">分红天数<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="dividendDays" id="dividendDays" value="{$info.dividendDays}" required="" type="number" />
+                                                    <span>天</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">冻结天数<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="freezeDays" id="freezeDays" value="{$info.freezeDays}" required="" type="number" />
+                                                    <span>天</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">排队利息<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="interest" id="interest" value="{$info.interest}" required="" type="number" />
+                                                    <span>%</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">单个账号投资封顶<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="upLimit" id="upLimit" value="{$info.upLimit}" required="" type="number" />
+                                                    <span>元/月</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">打款时间<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="PaymentTime" id="PaymentTime" value="{$info.PaymentTime}" required="" type="number" />
+                                                    <span>小时</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group" style="display:none" >
+                                                <label class="control-label" for="">超时未打款扣除上级<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="fine" id="fine" value="{$info.fine}" required="" type="number" />
+                                                    <span>元</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group" style="display:none" >
+                                                <label class="control-label" for="">提供帮助消耗排单币<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="costCoin" id="costCoin" value="{$info.costCoin}" required="" type="number" />
+                                                    <span>个/千元</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">最低接受帮助金额<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="minAccept" id="minAccept" value="{$info.minAccept}" required="" type="number" />
+                                                    <span>元</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="">取消提供帮助时限<span class="required">&nbsp;</span></label>
+                                                <div class="controls input-icon">
+                                                    <input class="form-control from-controlx" name="cancelDays" id="cancelDays" value="{$info.cancelDays}" required="" type="number" />
+                                                    <span>天</span>
+                                                </div>
+                                            </div>
+                                            <div class="alert alert-error">警告，我已完全了解所有风险。我决定参与并尊重传承文化与传统。</div>
+                                            <div class="form-actions">
+                                                <button onclick="return doSubmit();" class="btn blue" id="joinformsubbtn">确认修改(Submit)</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    function doSubmit() {
+                        $.post('/match/system/', $('#ctl01').serialize(), function(data){
+                            if (data.ret)
+                            {
+                                alert('修改成功');
+                                window.location.reload();
+                            }
+                            else
+                            {
+                                alert(data.msg);
+                            }
+                        }, 'json');
+                        return false;
+                    }
+                </script>
+
+            </div>
+        </div>
+    </form>
+</div>
+<include file="Common/foot" />

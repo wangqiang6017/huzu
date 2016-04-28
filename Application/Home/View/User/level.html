@@ -1,0 +1,68 @@
+<include file="Common/header" />
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">会员级别 <small>Member Level</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">会员级别</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="portlet-body flip-scroll">
+                    <div>
+                        <div class="span10"><a href="/user/levelAdd/">添加会员级别</a></div>
+                        <table class="table table-bordered table-striped example cus_datatable dataTable no-footer" cellspacing="0" id="ContentPlaceHolder1_GridView1" style="border-collapse:collapse;">
+                            <tr>
+                                <th scope="col">会员名称</th>
+                                <th scope="col">最小直推人数</th>
+                                <th scope="col">最大直推人数</th>
+                                <th scope="col">最小团队人数</th>
+                                <th scope="col">最大团队人数</th>
+                                <th scope="col">利息</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            <?php if(!empty($list)){
+                                foreach($list as $v){
+                                ?>
+                            <tr>
+                            <td>{$v.name}</td>
+                            <td>{$v.min_direct}人</td>
+                            <td>{$v.max_direct}人</td>
+                            <td>{$v.min_team}人</td>
+                            <td>{$v.max_team}人</td>
+                            <td>{$v.interest}%</td>
+                            <td>
+                            <a href="/user/levelEdit/id/{$v.id}">编辑</a>
+                            &nbsp;<a onclick="del({$v.id})" href="javascript:void(0);" >删除</a>
+                            </td>
+                        </tr>
+                        <?php }} ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+    function del(id)
+    {
+        if (confirm('确定要删除吗？'))
+        {
+            $.post('/user/levelDel/id/' + id, function(data){
+                if (data.ret)
+                {
+                    alert('删除成功');
+                    window.location.reload();
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            }, 'json');
+        }
+    }
+</script>
+    <include file="Common/foot" />

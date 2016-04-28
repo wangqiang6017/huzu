@@ -1,0 +1,62 @@
+<include file="Common/header" />
+    <!-- END SIDEBAR -->
+    <form method="get" action="" id="ctl01">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">排单币管理 <small>Accept List Match</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">排单币管理</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="portlet-body flip-scroll">
+                    <div class="controls input-icon">
+                        <span id="ContentPlaceHolder1_Label1" class="control-label">状态：</span>
+                        <select name="status" class="btn">
+                            <option value='0'>不限</option>
+                            <option value='1' <?php if($status == 1){ echo 'selected';} ?>>未使用</option>
+                            <option value='2' <?php if($status == 2){ echo 'selected';} ?>>已使用</option>
+                        </select>
+                        <input type="submit" value="查询" class="btn blue" />
+                        <a href='/match/coinAdd/' id='various1' class='btn green'>生成排单币</a>
+                        <a href='/match/coinTrans' id='various1' class='btn red'>转让排单币</a>
+                    </div>
+                    <table id="example" class="table table-bordered table-striped example cus_datatable dataTable no-footer" role="grid" aria-describedby="example_info" cellpadding="1" cellspacing="1">
+                        <thead>
+                        <tr role="row">
+                            <th class="sorting">编号</th>
+                            <th class="sorting">激活码</th>
+                            <th class="sorting">状态</th>
+                            <th class="sorting">归属用户</th>
+                            <th class="sorting">生成时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if(empty($list)){ ?>
+                        <tr>
+                            <td colspan="5">暂无拍单币！</td>
+                        </tr>
+                        <?php }else{ foreach($list as $v){ ?>
+                        <tr role="row" class="odd">
+                            <td>{$v.id}</td>
+                            <td>{$v.code}</td>
+                            <td><?php if($v['status'] == 1){ echo '未使用';}else{ echo '已使用';} ?></td>
+                            <td>{$v.uname}</td>
+                            <td><?php echo date('Y-m-d H:i:s', $v['addtime']); ?></td>
+                        </tr>
+                        <?php }} ?>
+                        </tbody>
+                    </table>
+                    <div class="pagelist">{$page}</div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<include file="Common/foot" />

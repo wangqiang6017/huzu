@@ -1,0 +1,57 @@
+<include file="Common/header" />
+    <form method="post" id="subForm">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="page-title">在线留言 <small>Change Password</small> </h3>
+                        <ul class="breadcrumb">
+                            <li><i class="icon-home"></i><a href="/">Home</a> <i class="icon-angle-right"></i></li>
+                            <li><a href="#">在线留言</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <ul>
+                        <li>您可将您的问题在此处反馈给平台管理员，客服会在第一时间回复您。</li>
+                        <li>提交工单时，请一定选择好分类，并将问题描述清楚，便于所属分类的客服快速处理好。</li>
+                    </ul>
+
+                    <div class="span12">
+                        <div class="control-group">
+                            <label class="control-label" for="applyamount">具体内容：</label>
+                            <div class="controls">
+                                <textarea name="content" rows="2" cols="10" id="conent" class="from-control" style="height:60px;width:90%;"></textarea>
+                            </div>
+                            <div class="help-hint"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a id="subButton" class="btn blue" href="javascript:void(0);" style="margin: 0 auto;">确定</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<script type="text/javascript">
+    $(function(){
+        $('#subButton').click(function(){
+            $.post('/exchange/messageAdd/', $('#subForm').serialize(), function(data){
+                if (data.ret)
+                {
+                    alert('添加成功');
+                    window.location.href = '/exchange/message';
+                }
+                else
+                {
+                    alert(data.msg);
+                }
+            }, 'json');
+        })
+    })
+</script>
+<include file="Common/foot" />
